@@ -4,7 +4,21 @@
     <meta charset="utf-8">
     <title></title>
     <style media="screen">
-      img{width:50%;}
+    body{margin: 0;height: 100vh}
+      img{width:90%;}
+      .container{
+        display:flex;
+        height: 100vh;
+      }
+      .item1{
+          flex-grow:1;
+          background-image: url("海1.jpg");}
+      .item2{
+          flex-grow:1;
+          background-color: pink;}
+      .item3{
+          flex-grow:1;
+          background-color: yellow;}
     </style>
   </head>
   <body>
@@ -23,9 +37,9 @@
       localStorage.setItem("ls_count",count);
 
     }
-      ryousi_count=0;
-      same_count=0;
-      tyouri_count=0;
+      tataki_count=0;
+      sasimi_count=0;
+      tuna_count=0;
 
       setInterval(screen_update,10);
       function screen_update() {
@@ -38,24 +52,24 @@
         count++;
         span.textContent=count;
       }
-       function tyouri() {
+       function tataki() {
         if(count>=10){
           count-=10;
-          tyouri_count++;
+          tataki_count++;
         setInterval(auto_CountUp,1500,1);
        }
       }
-        function ryousi() {
+        function sasimi() {
           if(count>=100){
             count-=100;
-            ryousi_count++;
+            sasimi_count++;
           setInterval(auto_CountUp,1000,1);
          }
         }
-        function same() {
+        function tuna() {
           if(count>=300){
             count-=300;
-            same_count++;
+            tuna_count++;
           setInterval(auto_CountUp,500,1);
          }
         }
@@ -65,12 +79,25 @@
             }
 
     </script>
-    <p><span id="cookie_count"></span>切れ</p>
-    <img onclick="cookie_click()" src="マグロ.jpg" alt="">
-    <ul>
-      <li onclick="tyouri()">調理師</li>
-      <li onclick="ryousi()">漁師</li>
-      <li onclick="same()">サメ</li>
-    </ul>
+    <div class="container">
+
+    <div class="item1">
+      <p>
+        まぐろの総数:<span id="cookie_count"></span>匹
+      </p>
+      <img onclick="cookie_click()" src="マグロ.jpg" alt="">
+    </div>
+    <div class="item2">
+      制作途中
+    </div>
+    <div class="item3">
+      <ul>
+        <li onclick="tataki()">まぐろたたき</li>
+        <li onclick="sasimi()">刺身</li>
+        <li onclick="tuna()">ツナ</li>
+      </ul>
+    </div>
+
+    </div>
   </body>
 </html>
