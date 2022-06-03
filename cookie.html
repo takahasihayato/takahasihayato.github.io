@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
     <meta charset="utf-8">
     <title></title>
     <style media="screen">
@@ -48,7 +52,11 @@
     }
 
       function cookie_click() {
-        span=document.getElementById('cookie_count')
+        var cookie_img=document.getElementById('cookie_clickimg');
+        cookie_img.classList.remove('animate__animated','animate__shakeX');
+        void cookie_img.offsetWidth;
+        cookie_img.classList.add('animate__animated','animate__shakeX');
+        span=document.getElementById('cookie_count');
         count++;
         span.textContent=count;
       }
@@ -82,10 +90,10 @@
     <div class="container">
 
     <div class="item1">
-      <p>
+      <p class="animate__animated animate__bounce">
         まぐろの総数:<span id="cookie_count"></span>匹
       </p>
-      <img onclick="cookie_click()" src="マグロ.jpg" alt="">
+      <img id="cookie_clickimg" onclick="cookie_click()" src="マグロ.jpg" alt="">
     </div>
     <div class="item2">
       制作途中
