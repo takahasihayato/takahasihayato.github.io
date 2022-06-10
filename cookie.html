@@ -16,7 +16,7 @@
       }
       .item1{
           flex-grow:1;
-          background-image: url("海1.jpg");}
+          background-image: url("ペンギン.jpg");}
       .item2{
           flex-grow:1;
           background-color: pink;}
@@ -61,22 +61,22 @@
         span.textContent=count;
       }
        function tataki() {
-        if(count>=10){
-          count-=10;
+        if(count>=0){
+          count+=1;
           tataki_count++;
         setInterval(auto_CountUp,1500,1);
        }
       }
         function sasimi() {
-          if(count>=100){
-            count-=100;
+          if(count>=0){
+            count+=10;
             sasimi_count++;
           setInterval(auto_CountUp,1000,1);
          }
         }
         function tuna() {
-          if(count>=300){
-            count-=300;
+          if(count>=0){
+            count+=30;
             tuna_count++;
           setInterval(auto_CountUp,500,1);
          }
@@ -84,6 +84,10 @@
 
         function auto_CountUp(num) {
           count += num;
+          var cookie_img=document.getElementById('cookie_clickimg');
+          cookie_img.classList.remove('animate__animated','animate__shakeX');
+          void cookie_img.offsetWidth;
+          cookie_img.classList.add('animate__animated','animate__shakeX');
             }
 
     </script>
@@ -91,7 +95,7 @@
 
     <div class="item1">
       <p class="animate__animated animate__bounce">
-        まぐろの総数:<span id="cookie_count"></span>匹
+        まぐろの消費量:<span id="cookie_count"></span>匹
       </p>
       <img id="cookie_clickimg" onclick="cookie_click()" src="マグロ.jpg" alt="">
     </div>
