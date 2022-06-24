@@ -9,24 +9,63 @@
     <title></title>
     <style media="screen">
     body{margin: 0;height: 100vh}
-      img{width:90%;}
+      img{width:70%;}
       .container{
         display:flex;
         height: 100vh;
       }
       .item1{
           flex-grow:1;
-          background-image: url("ペンギン.jpg");}
+          background-image: url("海.jpg");}
       .item2{
           flex-grow:1;
           background-color: pink;}
       .item3{
           flex-grow:1;
           background-color: yellow;}
+
+          #buildings_sell{
+            display:none;
+          }
     </style>
   </head>
   <body>
     <script type="text/javascript">
+
+    let event_ids=[];
+
+    class Building{
+      constructor(time,num,cost){
+        this.interval_ids=[];
+        this.interval_time=time;
+        this.add_num=num;
+        this.cost=cost;
+      }
+      count_up(num){
+        count+=num;
+      }
+      buy(){
+        if(count>=this.cost){
+          count-=this.cost;
+        let self=this;
+        let return_id=setInterval(function(){
+          self.count_up(self.add_num);
+        },self.interval_time);
+        this.interval_ids.push(return_id);
+      }
+    }
+      sell(){
+        let return_id=this.interval_ids.pop();
+        clearInterval(return_id);
+      }
+    }
+
+    let tataki=new Building(10000,1,10);
+    let sasimi=new Building(1000,1,50);
+    let tuna=new Building(1000,8,100);
+
+
+
       count=0;
       let ls_count=localStorage.getItem("ls_count");
       if(ls_count){
@@ -56,17 +95,29 @@
         cookie_img.classList.remove('animate__animated','animate__shakeX');
         void cookie_img.offsetWidth;
         cookie_img.classList.add('animate__animated','animate__shakeX');
+        var cookie_img=document.getElementById('cookie_clickimg2');
+        cookie_img.classList.remove('animate__animated','animate__shakeX');
+        void cookie_img.offsetWidth;
+        cookie_img.classList.add('animate__animated','animate__shakeX');
         span=document.getElementById('cookie_count');
         count++;
         span.textContent=count;
       }
-       function tataki() {
+      /* function tataki() {
         if(count>=0){
           count+=1;
           tataki_count++;
-        setInterval(auto_CountUp,1500,1);
+      let r_id = setInterval(auto_CountUp,1500,1);
+      event_ids.push(r_id);
        }
+     }
+
+      function sell_tataki(){
+        let r_id=event_ids.pop();
+        clearInterval(r_id);
+
       }
+
         function sasimi() {
           if(count>=0){
             count+=10;
@@ -81,13 +132,30 @@
           setInterval(auto_CountUp,500,1);
          }
         }
-
+*/
         function auto_CountUp(num) {
           count += num;
           var cookie_img=document.getElementById('cookie_clickimg');
           cookie_img.classList.remove('animate__animated','animate__shakeX');
           void cookie_img.offsetWidth;
           cookie_img.classList.add('animate__animated','animate__shakeX');
+          var cookie_img=document.getElementById('cookie_clickimg2');
+          cookie_img.classList.remove('animate__animated','animate__shakeX');
+          void cookie_img.offsetWidth;
+          cookie_img.classList.add('animate__animated','animate__shakeX');
+          span=document.getElementById('cookie_count');
+            }
+
+            function buildSwitch(){
+            let buy_element=document.getElementById('buildings_buy');
+            let sell_element=document.getElementById('buildings_sell');
+            if(buy_element.style.display !="none"){
+              buy_element.style.display="none";
+              sell_element.style.display="block";
+            }else{
+              buy_element.style.display="block";
+              sell_element.style.display="none";
+            }
             }
 
     </script>
@@ -98,15 +166,27 @@
         まぐろの消費量:<span id="cookie_count"></span>匹
       </p>
       <img id="cookie_clickimg" onclick="cookie_click()" src="マグロ.jpg" alt="">
+      <img id="cookie_clickimg2" onclick="cookie_click()" src="マグロ.jpg" alt="">
     </div>
     <div class="item2">
       制作途中
     </div>
     <div class="item3">
+      <div id="buildings_buy">
+
+    <span onclick="buildSwitch()"> 購入</span>
       <ul>
-        <li onclick="tataki()">まぐろたたき</li>
-        <li onclick="sasimi()">刺身</li>
-        <li onclick="tuna()">ツナ</li>
+        <li onclick="tataki.buy()">まぐろたたき</li>
+        <li onclick="sasimi.buy()">刺身</li>
+        <li onclick="tuna.buy()">ツナ</li>
+      </ul>
+    </div>
+        <div id="buildings_sell">
+    <span onclick="buildSwitch()"> 売却</span>
+      <ul>
+        <li onclick="tataki.sell()">まぐろたたき</li>
+        <li onclick="sasimi.sell()">刺身</li>
+        <li onclick="tuna.sell()">ツナ</li>
       </ul>
     </div>
 
