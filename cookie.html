@@ -9,7 +9,7 @@
     <title></title>
     <style media="screen">
     body{margin: 0;height: 100vh}
-      img{width:70%;}
+      img{width:50%;}
       .container{
         display:flex;
         height: 100vh;
@@ -41,7 +41,19 @@
         this.add_num=num;
         this.cost=cost;
       }
+      get count(){
+        return this.interval_ids.lenght;
+      }
       count_up(num){
+        var cookie_img=document.getElementById('cookie_clickimg');
+        cookie_img.classList.remove('animate__animated','animate__shakeX');
+        void cookie_img.offsetWidth;
+        cookie_img.classList.add('animate__animated','animate__shakeX');
+        var cookie_img=document.getElementById('cookie_clickimg2');
+        cookie_img.classList.remove('animate__animated','animate__shakeX');
+        void cookie_img.offsetWidth;
+        cookie_img.classList.add('animate__animated','animate__shakeX');
+        span=document.getElementById('cookie_count');
         count+=num;
       }
       buy(){
@@ -60,9 +72,9 @@
       }
     }
 
-    let tataki=new Building(10000,1,10);
-    let sasimi=new Building(1000,1,50);
-    let tuna=new Building(1000,8,100);
+    let tataki=new Building(1000,1,10);
+    let sasimi=new Building(100,1,50);
+    let tuna=new Building(100,8,100);
 
 
 
@@ -80,6 +92,7 @@
       localStorage.setItem("ls_count",count);
 
     }
+      count=100;
       tataki_count=0;
       sasimi_count=0;
       tuna_count=0;
@@ -103,48 +116,7 @@
         count++;
         span.textContent=count;
       }
-      /* function tataki() {
-        if(count>=0){
-          count+=1;
-          tataki_count++;
-      let r_id = setInterval(auto_CountUp,1500,1);
-      event_ids.push(r_id);
-       }
-     }
 
-      function sell_tataki(){
-        let r_id=event_ids.pop();
-        clearInterval(r_id);
-
-      }
-
-        function sasimi() {
-          if(count>=0){
-            count+=10;
-            sasimi_count++;
-          setInterval(auto_CountUp,1000,1);
-         }
-        }
-        function tuna() {
-          if(count>=0){
-            count+=30;
-            tuna_count++;
-          setInterval(auto_CountUp,500,1);
-         }
-        }
-*/
-        function auto_CountUp(num) {
-          count += num;
-          var cookie_img=document.getElementById('cookie_clickimg');
-          cookie_img.classList.remove('animate__animated','animate__shakeX');
-          void cookie_img.offsetWidth;
-          cookie_img.classList.add('animate__animated','animate__shakeX');
-          var cookie_img=document.getElementById('cookie_clickimg2');
-          cookie_img.classList.remove('animate__animated','animate__shakeX');
-          void cookie_img.offsetWidth;
-          cookie_img.classList.add('animate__animated','animate__shakeX');
-          span=document.getElementById('cookie_count');
-            }
 
             function buildSwitch(){
             let buy_element=document.getElementById('buildings_buy');
